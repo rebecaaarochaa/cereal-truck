@@ -1,1 +1,173 @@
-<h1>Hola mundo</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cereal Truck</title>
+  <style>
+    :root { --brand:#f59e0b; --ink:#111827; --muted:#6b7280; --bg:#ffffff; --panel:#f9fafb; }
+    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+    header{position:sticky;top:0;background:#fff8e6;border-bottom:1px solid #f3f4f6}
+    .wrap{max-width:1050px;margin:auto;padding:0 16px}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .logo{width:36px;height:36px;border-radius:12px;background:var(--brand);display:grid;place-items:center;color:#111}
+    .links a{margin-left:16px;text-decoration:none;color:var(--ink)}
+    .btn{display:inline-block;padding:10px 16px;border-radius:12px;background:var(--brand);color:#111;text-decoration:none;font-weight:700}
+    .btn-outline{background:transparent;border:1px solid var(--brand)}
+    section{padding:56px 0}
+    .hero{display:grid;gap:28px;grid-template-columns:1.1fr .9fr;align-items:center}
+    .hero h1{font-size:40px;line-height:1.1;margin:0}
+    .hero p{color:var(--muted)}
+    .card{background:#fff;border:1px solid #eef0f3;border-radius:16px;padding:16px}
+    .grid{display:grid;gap:16px}
+    .g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .panel{background:var(--panel);border-top:1px solid #eef0f3;border-bottom:1px solid #eef0f3}
+    footer{border-top:1px solid #eef0f3}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .links{display:none} }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo">CT</div>
+      <span>Cereal Truck</span>
+    </div>
+    <nav class="links">
+      <a href="#menu">Menú</a>
+      <a href="#arma">Arma tu bowl</a>
+      <a href="#precios">Precios</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn" href="#precios">Ordenar</a>
+  </div>
+</header>
+
+<section class="wrap hero">
+  <div>
+    <h1>Desayunos rápidos y a tu medida</h1>
+    <p>Cereal Truck dentro de la universidad. Personaliza tu bowl con cereales, leches y toppings. Energía en 2–3 minutos.</p>
+    <div style="margin-top:18px">
+      <a class="btn" href="#precios">Ver precios</a>
+      <a class="btn btn-outline" href="#menu" style="margin-left:8px">Explorar menú</a>
+    </div>
+    <div class="grid g-3" style="margin-top:22px">
+      <div class="card"><b>Rápido</b><br/><span style="color:var(--muted)">Servicio express para estudiantes</span></div>
+      <div class="card"><b>Personalizable</b><br/><span style="color:var(--muted)">Cereal + leche + toppings</span></div>
+      <div class="card"><b>Accesible</b><br/><span style="color:var(--muted)">Combos con precio claro</span></div>
+    </div>
+  </div>
+  <div class="card" style="height:260px;display:grid;place-items:center;font-size:64px">🥣</div>
+</section>
+
+<section id="menu" class="panel">
+  <div class="wrap">
+    <h2>Menú</h2>
+    <p style="color:var(--muted)">Selecciona tu base y complementos.</p>
+    <div class="grid g-3" style="margin-top:16px">
+      <div class="card">
+        <h3 style="margin-top:0">Cereales</h3>
+        Choco Crunch · Honey Flakes · Granola Mix · Protein Oats
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Leches</h3>
+        Entera · Deslactosada · Light · Almendra · Avena
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Toppings</h3>
+        Plátano · Fresa · Arándano · Miel · Chispas · Almendra · Nuez
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="arma" class="wrap">
+  <h2>Arma tu bowl</h2>
+  <div class="grid g-3" style="margin-top:16px">
+    <div class="card"><b>1. Elige cereal</b><br/>Choco Crunch, Honey Flakes, Granola Mix o Protein Oats</div>
+    <div class="card"><b>2. Selecciona leche</b><br/>Entera, deslactosada, light, almendra o avena</div>
+    <div class="card"><b>3. Añade toppings</b><br/>Fruta, semillas y salsas dulces</div>
+  </div>
+</section>
+
+<section id="precios" class="panel">
+  <div class="wrap">
+    <h2>Precios y combos</h2>
+    <div class="grid g-3" style="margin-top:16px">
+      <div class="card">
+        <h3 style="margin:0 0 6px 0">Bowl Sencillo</h3>
+        <div style="font-size:22px;font-weight:800">$59</div>
+        <ul>
+          <li>1 cereal</li><li>1 leche</li><li>1 topping</li>
+        </ul>
+        <a class="btn" href="#contacto" style="width:100%;text-align:center">Ordenar</a>
+      </div>
+      <div class="card" style="border-color:var(--brand)">
+        <h3 style="margin:0 0 6px 0">Bowl Premium</h3>
+        <div style="font-size:22px;font-weight:800">$79</div>
+        <ul>
+          <li>2 cereales</li><li>1 leche</li><li>2 toppings</li>
+        </ul>
+        <a class="btn" href="#contacto" style="width:100%;text-align:center">Ordenar</a>
+      </div>
+      <div class="card">
+        <h3 style="margin:0 0 6px 0">Bowl Pro</h3>
+        <div style="font-size:22px;font-weight:800">$95</div>
+        <ul>
+          <li>Granola o Protein Oats</li><li>1 leche</li><li>+ proteína</li><li>2 toppings</li>
+        </ul>
+        <a class="btn" href="#contacto" style="width:100%;text-align:center">Ordenar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros" class="wrap">
+  <h2>Nuestra propuesta</h2>
+  <p style="color:var(--muted);max-width:760px">
+    Cereal Truck es un food truck dentro de la universidad. Ofrecemos desayunos rápidos,
+    personalizables y con opciones para todo tipo de dieta. Priorizamos ingredientes frescos
+    y servicio ágil para la comunidad estudiantil.
+  </p>
+  <div class="grid g-2" style="margin-top:16px">
+    <div class="card">Energía para el estudio</div>
+    <div class="card">Ingredientes frescos</div>
+    <div class="card">Opciones fit</div>
+    <div class="card">Atención amable</div>
+  </div>
+</section>
+
+<section id="contacto" class="panel">
+  <div class="wrap">
+    <h2>Contacto</h2>
+    <div class="grid g-2" style="margin-top:16px">
+      <div class="card">
+        <p>📍 Zona de food trucks, Universidad</p>
+        <p>📞 55 0000 0000</p>
+        <p>📧 hola@cerealtruck.com.mx</p>
+        <p>📸 Instagram: @cerealtruck.mx</p>
+      </div>
+      <form class="card" onsubmit="event.preventDefault(); alert('Gracias por tu mensaje 🙌');">
+        <h3 style="margin-top:0">Escríbenos</h3>
+        <input placeholder="Nombre" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin-bottom:8px"/>
+        <input placeholder="Correo" type="email" required style="width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin-bottom:8px"/>
+        <textarea placeholder="Mensaje" required rows="4" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin-bottom:8px"></textarea>
+        <button class="btn" style="width:100%;border:none;cursor:pointer">Enviar</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;height:72px">
+    <p>© 2025 Cereal Truck</p>
+    <p>Dominio sugerido: <b>cerealtruck.com.mx</b></p>
+  </div>
+</footer>
+
+</body>
+</html>
