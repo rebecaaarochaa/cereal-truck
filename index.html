@@ -1,109 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Cereal Truck</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
-  /* ====== Design tokens ====== */
   :root{
-    --brand:#f59e0b; --brand-2:#fde68a; --ink:#111827; --muted:#6b7280;
-    --bg:#fffdf6; --panel:#fffaf0; --line:#efe7d5; --accent:#ef4444; --mint:#34d399; --blue:#3b82f6;
+    --bg:#0b0c10;
+    --surface:#0f1115;
+    --card:#151922;
+    --muted:#a6adbb;
+    --ink:#e5e7eb;
+    --brand:#f59e0b;
+    --brand-ink:#1a1205;
+    --line:#222836;
+    --ok:#22c55e;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
-  a{color:inherit}
-  h1,h2,h3{margin:0 0 .4rem 0}
-  section{padding:64px 0}
-  .wrap{max-width:1080px;margin:auto;padding:0 16px}
-
-  /* ====== Header ====== */
-  header{position:sticky;top:0;z-index:50;background:#fff8ea;border-bottom:1px solid var(--line);backdrop-filter:saturate(140%) blur(6px)}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.3px}
-  .logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 90deg at 50% 50%,#fff 0 25%,#fde68a 0 50%, #fff 0 75%, #fde68a 0 100%);
-    display:grid;place-items:center;color:#111;box-shadow:inset 0 0 0 2px #1112}
-  .links a{margin-left:16px;text-decoration:none;color:var(--ink);font-weight:600;opacity:.9}
-  .links a:hover{opacity:1}
-  .btn{display:inline-block;padding:10px 16px;border-radius:14px;background:var(--brand);color:#111;text-decoration:none;font-weight:800;box-shadow:0 6px 0 #d97706;transition:transform .08s}
-  .btn:active{transform:translateY(2px);box-shadow:0 4px 0 #d97706}
-  .btn-outline{background:transparent;border:2px solid var(--brand);box-shadow:none}
-  .chip{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .7rem;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.85rem}
-
-  /* ====== Hero ====== */
-  .hero{display:grid;gap:28px;grid-template-columns:1.08fr .92fr;align-items:center}
-  .hero h1{font-size:44px;line-height:1.05}
-  .hero p{color:var(--muted)}
-  .badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-  .points{display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:22px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 1px 0 #00000008}
-  .hero-visual{position:relative;height:320px;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:
-      radial-gradient(1200px 600px at -10% -20%, #ffffff 0 20%, #fff7e6 25% 55%, #fff 65% 100%)}
-  .hero-visual::before{ /* cereal loops */
-    content:"";position:absolute;inset:-20% -10% auto auto;height:140%;width:140%;
+  html,body{height:100%}
+  body{
+    margin:0;background:
+      radial-gradient(1200px 600px at 10% -10%, #1b1f2a 0 40%, transparent 50%) no-repeat,
+      radial-gradient(1000px 500px at 120% 10%, #1b1f2a 0 35%, transparent 60%) no-repeat,
+      var(--bg);
+    color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1120px;margin:0 auto;padding:0 24px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+       padding:12px 18px;border-radius:12px;font-weight:700}
+  .btn-primary{background:var(--brand);color:var(--brand-ink);box-shadow:0 8px 24px #f59e0b33}
+  .btn-ghost{border:1px solid #2a3242;background:transparent;color:var(--ink)}
+  .btn:hover{transform:translateY(-1px)}
+  .btn:active{transform:none}
+  /* Header */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(15,17,21,.7);backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid #141a26
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{
+    width:36px;height:36px;border-radius:10px;
+    background:conic-gradient(from 140deg,#f8fafc, #fde68a 35%, #f59e0b 65%, #f8fafc 100%);
+    display:grid;place-items:center;font-weight:900;color:#111;letter-spacing:.5px
+  }
+  .brand span{font-weight:800;letter-spacing:.3px}
+  .links{display:flex;gap:20px}
+  .links a{color:var(--muted);font-weight:600}
+  .links a:hover{color:var(--ink)}
+  /* Hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:72px 0}
+  .kicker{display:inline-flex;gap:.5rem;align-items:center;border:1px solid #2a3242;border-radius:999px;color:var(--muted);padding:6px 12px;font-size:.9rem}
+  h1{font-size:48px;line-height:1.05;margin:14px 0 12px}
+  .lead{color:var(--muted);max-width:58ch}
+  .hero-visual{
+    height:360px;border-radius:18px;border:1px solid #1c2332;overflow:hidden;
     background:
-      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240"><defs><g id="o"><circle cx="18" cy="18" r="14" fill="%23f59e0b"/><circle cx="18" cy="18" r="7" fill="%23fff"/></g></defs><g opacity=".25"><use href="%23o" x="8" y="8"/><use href="%23o" x="80" y="32"/><use href="%23o" x="150" y="18"/><use href="%23o" x="30" y="110"/><use href="%23o" x="110" y="90"/><use href="%23o" x="190" y="120"/><use href="%23o" x="40" y="190"/><use href="%23o" x="120" y="170"/><use href="%23o" x="200" y="200"/></g></svg>') center/320px no-repeat;
-    filter: blur(.2px);
-    pointer-events:none;
+      radial-gradient(220px 120px at 85% 20%, #f59e0b22 0 60%, #0000 70%) no-repeat,
+      linear-gradient(180deg,#121520 0%,#0f121b 100%);
+    position:relative;box-shadow:0 20px 60px #00000070
   }
-  .hero-visual::after{ /* milk splash mask */
-    content:"";position:absolute;inset:0;
-    background:
-      radial-gradient(circle at 30% 40%, #ffffff 0 20%, transparent 22%),
-      radial-gradient(circle at 48% 20%, #ffffff 0 16%, transparent 18%),
-      radial-gradient(circle at 60% 58%, #ffffff 0 26%, transparent 28%),
-      radial-gradient(circle at 80% 40%, #ffffff 0 18%, transparent 20%),
-      radial-gradient(circle at 70% 85%, #ffffff 0 20%, transparent 22%);
-    mix-blend-mode:screen;opacity:.9;pointer-events:none;
-  }
-  .float-sticker{
-    position:absolute;inset:auto -12px 12px auto;background:#111;color:#fff;border-radius:14px;
-    padding:.45rem .8rem;font-weight:800;transform:rotate(-6deg);box-shadow:0 12px 20px #00000018
-  }
-
-  /* ====== Menu grid ====== */
-  .panel{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .grid{display:grid;gap:16px}
+  /* bowl */
+  .bowl{position:absolute;inset:auto 24px 24px auto;width:420px;max-width:calc(100% - 48px)}
+  /* Feature grid */
+  .grid{display:grid;gap:18px}
   .g-3{grid-template-columns:repeat(3,minmax(0,1fr))}
   .g-2{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .icon{font-size:22px;line-height:1}
-
-  /* ====== Decorative separators ====== */
-  .sep{height:18px;margin:28px 0;background:
-      repeating-linear-gradient(90deg,
-        #0000 0 18px, #0000 18px 22px,
-        #f59e0b22 22px 26px, #0000 26px 44px)}
-  .sprinkles{
-    --s: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="90" height="20" viewBox="0 0 90 20"><g opacity=".5"><rect x="5" y="9" width="18" height="2" rx="1" fill="%23ef4444"/><rect x="35" y="5" width="14" height="2" rx="1" fill="%2334d399"/><rect x="65" y="12" width="12" height="2" rx="1" fill="%233b82f6"/></g></svg>');
-    background-image:var(--s);background-repeat:repeat;background-size:160px 20px;opacity:.7;border-radius:10px;height:16px
+  .card{
+    background:linear-gradient(180deg,#171c27 0%,#121720 100%);
+    border:1px solid #1f2836;border-radius:14px;padding:16px
   }
-
-  /* ====== Price cards ====== */
+  .card h3{margin:0 0 6px}
+  .tag{display:inline-block;font-size:.8rem;color:#0c111a;background:#222a39;border:1px solid #2a3242;border-radius:999px;padding:4px 10px}
+  /* Sections */
+  section{padding:72px 0;border-top:1px solid #141a26}
+  .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .muted{color:var(--muted)}
+  /* Pricing */
   .price .card{position:relative;overflow:hidden}
-  .price .card::after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;
-    background:radial-gradient(circle at 30% 30%, #fff 0 40%, #fde68a 42% 100%);opacity:.6}
-  .tag{display:inline-flex;align-items:center;gap:6px;padding:.25rem .6rem;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:.8rem}
-
-  /* ====== Feature icons ====== */
-  .feat{display:flex;align-items:center;gap:10px}
-  .feat b{font-size:1.05rem}
-
-  /* ====== Footer ====== */
-  footer{border-top:1px solid var(--line);background:#fff}
-  .foot{display:flex;justify-content:space-between;align-items:center;height:72px}
-
-  /* ====== Forms ====== */
-  input,textarea{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:12px}
-  form .btn{width:100%;border:none;cursor:pointer}
-
-  /* ====== Responsive ====== */
-  @media (max-width:980px){ .hero{grid-template-columns:1fr} .links{display:none} .points{grid-template-columns:1fr} }
+  .price .amount{font-size:30px;font-weight:900}
+  .recommend{outline:2px solid #f59e0b55;box-shadow:0 0 0 6px #f59e0b12}
+  .price .badge{
+    position:absolute;top:12px;right:12px;background:var(--brand);color:var(--brand-ink);
+    font-weight:800;border-radius:999px;padding:4px 10px;font-size:.8rem
+  }
+  ul{margin:12px 0 18px;padding-left:18px}
+  li{margin:6px 0;color:var(--muted)}
+  /* Contact */
+  input,textarea{
+    width:100%;background:#0c0f16;color:var(--ink);
+    border:1px solid #1e2533;border-radius:12px;padding:12px
+  }
+  textarea{resize:vertical}
+  /* Footer */
+  footer{border-top:1px solid #141a26}
+  .foot{display:flex;justify-content:space-between;align-items:center;height:74px;color:#7b8496}
+  /* Responsive */
+  @media (max-width:980px){
+    .links{display:none}
+    .hero{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="wrap nav">
+  <div class="container nav">
     <div class="brand">
       <div class="logo">CT</div><span>Cereal Truck</span>
     </div>
@@ -114,73 +120,182 @@
       <a href="#nosotros">Nosotros</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn" href="#precios">Ordenar</a>
+    <a class="btn btn-primary" href="#precios">Ordenar</a>
   </div>
 </header>
 
-<section class="wrap hero">
+<section class="container hero">
   <div>
-    <div class="chip">🥛 Leche fría • 🍓 fruta fresca • 🍯 miel real</div>
-    <h1>Desayunos rápidos y a tu medida</h1>
-    <p>Cereal Truck dentro de la universidad. Personaliza tu bowl con cereales, leches y toppings. Energía en 2–3 minutos.</p>
-    <div style="margin-top:18px">
-      <a class="btn" href="#precios">Ver precios</a>
-      <a class="btn btn-outline" href="#menu" style="margin-left:8px">Explorar menú</a>
+    <div class="kicker">Operamos dentro de campus • Servicio en 2–3 min</div>
+    <h1>Desayunos rápidos, claros y personalizables</h1>
+    <p class="lead">Bowls de cereal con bases, leches y toppings a elección. Flujo ágil, ticket transparente, calidad constante.</p>
+    <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn btn-primary" href="#precios">Ver precios</a>
+      <a class="btn btn-ghost" href="#menu">Explorar menú</a>
     </div>
-    <div class="points">
-      <div class="card feat"><span class="icon">⚡️</span><div><b>Rápido</b><br/><span style="color:var(--muted)">Servicio express</span></div></div>
-      <div class="card feat"><span class="icon">🧡</span><div><b>Personalizable</b><br/><span style="color:var(--muted)">Cereal + leche + toppings</span></div></div>
-      <div class="card feat"><span class="icon">💸</span><div><b>Accesible</b><br/><span style="color:var(--muted)">Combos claros</span></div></div>
+    <div class="grid g-3" style="margin-top:22px">
+      <div class="card"><h3>Velocidad</h3><div class="muted">Preparación estandarizada. Entrega en ventanilla.</div></div>
+      <div class="card"><h3>Personalización</h3><div class="muted">Combina cereal, leche y toppings. Opciones fit.</div></div>
+      <div class="card"><h3>Precio claro</h3><div class="muted">Tres combos. Sin sorpresas.</div></div>
     </div>
   </div>
-
   <div class="hero-visual">
-    <!-- Bowl principal -->
-    <svg width="100%" height="100%" viewBox="0 0 640 420" xmlns="http://www.w3.org/2000/svg">
+    <!-- Ilustración vector: bowl minimalista -->
+    <svg class="bowl" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bowl de cereal">
       <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#f59e0b"/>
+          <stop offset="100%" stop-color="#ffce3a"/>
+        </linearGradient>
         <linearGradient id="milk" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#ffffff"/>
-          <stop offset="100%" stop-color="#fef9f3"/>
-        </linearGradient>
-        <linearGradient id="bowl" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#f59e0b"/>
-          <stop offset="100%" stop-color="#fbbf24"/>
+          <stop offset="100%" stop-color="#eef2f7"/>
         </linearGradient>
       </defs>
+      <!-- plato -->
+      <ellipse cx="420" cy="410" rx="250" ry="46" fill="#0b0f19" opacity=".5"/>
       <!-- bowl -->
-      <ellipse cx="330" cy="310" rx="170" ry="62" fill="url(#bowl)" opacity="0.95"/>
-      <ellipse cx="330" cy="285" rx="160" ry="45" fill="url(#milk)"/>
-      <!-- cereal rings -->
+      <ellipse cx="400" cy="360" rx="260" ry="70" fill="url(#g1)"/>
+      <ellipse cx="400" cy="330" rx="230" ry="42" fill="url(#milk)"/>
+      <!-- “cereal” minimal -->
       <g opacity=".95">
-        <g fill="#f59e0b"><circle cx="240" cy="270" r="12"/><circle cx="240" cy="270" r="5" fill="#fff"/></g>
-        <g fill="#ef4444"><circle cx="300" cy="260" r="10"/><circle cx="300" cy="260" r="4" fill="#fff"/></g>
-        <g fill="#3b82f6"><circle cx="360" cy="275" r="11"/><circle cx="360" cy="275" r="4.5" fill="#fff"/></g>
-        <g fill="#34d399"><circle cx="410" cy="262" r="9"/><circle cx="410" cy="262" r="3.8" fill="#fff"/></g>
-        <g fill="#f59e0b"><circle cx="330" cy="250" r="10"/><circle cx="330" cy="250" r="4" fill="#fff"/></g>
-      </g>
-      <!-- frutas -->
-      <g>
-        <ellipse cx="280" cy="245" rx="14" ry="9" fill="#ef4444"/>
-        <ellipse cx="280" cy="245" rx="3" ry="2" fill="#fff" opacity=".8"/>
-        <ellipse cx="385" cy="250" rx="16" ry="10" fill="#3b82f6"/>
-        <ellipse cx="385" cy="250" rx="3" ry="2" fill="#fff" opacity=".8"/>
+        <circle cx="300" cy="315" r="10" fill="#ffb020"/><circle cx="300" cy="315" r="4" fill="#fff"/>
+        <circle cx="360" cy="312" r="9" fill="#f87171"/><circle cx="360" cy="312" r="3.5" fill="#fff"/>
+        <circle cx="420" cy="320" r="10" fill="#60a5fa"/><circle cx="420" cy="320" r="4" fill="#fff"/>
+        <circle cx="470" cy="310" r="8.5" fill="#34d399"/><circle cx="470" cy="310" r="3.2" fill="#fff"/>
       </g>
       <!-- miel -->
-      <path d="M210,240 C250,230 270,235 320,240 C360,245 380,245 410,238" stroke="#f59e0b" stroke-width="6" fill="none" stroke-linecap="round" opacity=".8"/>
+      <path d="M240,300 C300,290 360,295 520,300" stroke="#f59e0b" stroke-width="6" stroke-linecap="round" fill="none" opacity=".8"/>
     </svg>
-    <div class="float-sticker">🍯 + 🍌 + 🥣 = ❤️</div>
   </div>
 </section>
 
-<div class="wrap">
-  <div class="sprinkles" aria-hidden="true"></div>
-</div>
-
-<section id="menu" class="panel">
-  <div class="wrap">
-    <h2>Menú</h2>
-    <p style="color:var(--muted)">Selecciona tu base y complementos.</p>
-    <div class="sep" aria-hidden="true"></div>
-    <div class="grid g-3" style="margin-top:16px">
+<section id="menu">
+  <div class="container">
+    <div class="section-title">
+      <h2>Menú</h2>
+      <span class="muted">Base • Leche • Toppings</span>
+    </div>
+    <div class="grid g-3">
       <div class="card">
-        <h3 style="margin-top:0">Cereales</
+        <span class="tag">Cereales</span>
+        <h3 style="margin-top:10px">Selección</h3>
+        <p class="muted">Choco Crunch, Honey Flakes, Granola Mix, Protein Oats.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Leches</span>
+        <h3 style="margin-top:10px">Opciones</h3>
+        <p class="muted">Entera, deslactosada, light, almendra, avena.</p>
+      </div>
+      <div class="card">
+        <span class="tag">Toppings</span>
+        <h3 style="margin-top:10px">Complementos</h3>
+        <p class="muted">Plátano, fresa, arándano, miel, chispas, almendra, nuez.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="arma">
+  <div class="container">
+    <div class="section-title">
+      <h2>Arma tu bowl</h2>
+      <span class="muted">3 pasos</span>
+    </div>
+    <div class="grid g-3">
+      <div class="card"><h3>1. Cereal</h3><p class="muted">Elige una base. Granola y avena para perfiles fit.</p></div>
+      <div class="card"><h3>2. Leche</h3><p class="muted">Lácteas y vegetales. Servimos fría.</p></div>
+      <div class="card"><h3>3. Toppings</h3><p class="muted">Fruta de temporada y extras crujientes.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="container">
+    <div class="section-title">
+      <h2>Precios y combos</h2>
+      <span class="muted">Ticket promedio optimizado</span>
+    </div>
+    <div class="grid g-3 price">
+      <div class="card">
+        <span class="tag">Sencillo</span>
+        <h3 style="margin-top:10px">Bowl Sencillo</h3>
+        <div class="amount">$59</div>
+        <ul>
+          <li>1 cereal</li><li>1 leche</li><li>1 topping</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contacto">Ordenar</a>
+      </div>
+      <div class="card recommend">
+        <div class="badge">Recomendado</div>
+        <span class="tag">Valor</span>
+        <h3 style="margin-top:10px">Bowl Premium</h3>
+        <div class="amount">$79</div>
+        <ul>
+          <li>2 cereales</li><li>1 leche</li><li>2 toppings</li>
+        </ul>
+        <a class="btn btn-primary" href="#contacto">Ordenar</a>
+      </div>
+      <div class="card">
+        <span class="tag">Pro</span>
+        <h3 style="margin-top:10px">Bowl Pro</h3>
+        <div class="amount">$95</div>
+        <ul>
+          <li>Granola o Protein Oats</li><li>1 leche</li><li>+ proteína</li><li>2 toppings</li>
+        </ul>
+        <a class="btn btn-ghost" href="#contacto">Ordenar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nosotros">
+  <div class="container">
+    <div class="section-title">
+      <h2>Nuestra propuesta</h2>
+      <span class="muted">Operación simple • Experiencia consistente</span>
+    </div>
+    <div class="grid g-2">
+      <div class="card"><h3>Servicio</h3><p class="muted">Flujo en línea. Cobro ágil. Entrega directa.</p></div>
+      <div class="card"><h3>Calidad</h3><p class="muted">Ingredientes frescos y control de porciones.</p></div>
+      <div class="card"><h3>Saludable</h3><p class="muted">Opciones con avena y proteína.</p></div>
+      <div class="card"><h3>Marca</h3><p class="muted">Identidad clara y material punto de venta.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="container">
+    <div class="section-title">
+      <h2>Contacto</h2>
+      <span class="muted">Agenda y pedidos</span>
+    </div>
+    <div class="grid g-2">
+      <div class="card">
+        <p class="muted"><strong>Ubicación:</strong> Zona de food trucks, Universidad</p>
+        <p class="muted"><strong>Tel:</strong> 55 0000 0000</p>
+        <p class="muted"><strong>Correo:</strong> hola@cerealtruck.com.mx</p>
+        <p class="muted"><strong>Instagram:</strong> @cerealtruck.mx</p>
+      </div>
+      <form class="card" onsubmit="event.preventDefault(); alert('Mensaje enviado');">
+        <h3 style="margin:0 0 10px">Escríbenos</h3>
+        <div style="display:grid;gap:10px">
+          <input placeholder="Nombre" required>
+          <input type="email" placeholder="Correo" required>
+          <textarea rows="4" placeholder="Mensaje" required></textarea>
+          <button class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <span>© 2025 Cereal Truck</span>
+    <span>Dominio: <strong>cerealtruck.com.mx</strong></span>
+  </div>
+</footer>
+
+</body>
+</html>
